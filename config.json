@@ -1,0 +1,6 @@
+{
+  "url-backend": "127.0.0.1",
+  "port": 9999,
+  "data-db-connection":"mongodb+srv://luis:Jesus*2021@cluster0.gjkzyud.mongodb.net/?retryWrites=true&w=majority",
+  "name-db":"bd-registro-academico"
+}
