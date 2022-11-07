@@ -30,9 +30,6 @@ class RepositorioInscripcion(InterfaceRepositorio[Inscripcion]):
             "_id": "$materia",
             "promedio": {
               "$avg": "$nota_final"
-            """
-                $avg": "$nota_final, para realizar suma de las materias
-            """
             }
           }
         }
