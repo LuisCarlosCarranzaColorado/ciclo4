@@ -149,7 +149,10 @@ def getPromedioNotasEnMateria(id_materia):
     json=miControladorInscripcion.promedioNotasEnMateria(id_materia)
     return jsonify(json)
 #===============================================================================
-#rutas mesas
+#*******************************************************************************
+#===============================================================================
+
+#ENDPOINT MESAS
 
 @app.route("/mesas",methods=['GET'])
 def getMesas():
@@ -174,7 +177,7 @@ def eliminarMesa(id):
     json=miControladorMesa.delete(id)
     return jsonify(json)
 #===============================================================================
-#rutas candidatos
+#ENDPOINT CANDIDATOS
 
 @app.route("/candidatos",methods=['GET'])
 def getCandidatos():
@@ -205,7 +208,7 @@ def asignarPartidoACandidato(id,id_partido):
     json=miControladorCandidato.asignarPartido(id,id_partido)
     return jsonify(json)
 #===============================================================================
-#rutas PARTIDOS
+#ENDPOINT PARTIDOS
 
 @app.route("/partidos",methods=['GET'])
 def getPartidos():
@@ -230,7 +233,7 @@ def eliminarPartido(id):
     json=miControladorPartido.delete(id)
     return jsonify(json)
 #===============================================================================
-#rutas RESULTADOS
+#ENDPOINT RESULTADOS
 @app.route("/resultados",methods=['GET'])
 def getResultados():
     json=miControladorResultado.index()
@@ -253,10 +256,20 @@ def modificarResultado(id_resultado,id_mesa,id_candidato):
 def eliminarResultado(id_resultado):
     json=miControladorResultado.delete(id_resultado)
     return jsonify(json)
-@app.route("/inscripciones/materia/<string:id_materia>",methods=['GET'])
+@app.route("/resultados/candidato/<string:id_candidato>",methods=['GET'])
 def inscritosEnCandidato(id_candidato):
     json=miControladorResultado.listarInscritosEnCandidato(id_candidato)
     return jsonify(json)
+@app.route("/resultados/mesa/<string:id_mesa>",methods=['GET'])
+def inscritosEnMesa(id_mesa):
+    json=miControladorResultado.listarInscritosEnMesa(id_mesa)
+    return jsonify(json)
+
+@app.route("/resultados/mesas",methods=['GET'])
+def getVotosMayores():
+    json=miControladorResultado.votosMasAltosPorMesa()
+    return jsonify(json)
+
 ###################################################################################
 
 def loadFileConfig():
