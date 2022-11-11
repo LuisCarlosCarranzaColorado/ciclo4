@@ -15,11 +15,11 @@ class ControladorResultado():
     Asignacion estudiante y materia a inscripción(este es de guia)
     Asignacion mesa y candidato a Resultados
     """
-    def create(self,infoResultado,id_mesa,id_candidato):
+    def create(self,infoResultado,numero_mesa,cedula_candidato):
         nuevoResultado=Resultado(infoResultado)
-        laMesa=Mesa(self.repositorioMesa.findById(id_mesa))
-        elCandidato=Candidato(self.repositorioCandidato.findById(id_candidato))
-        nuevoResultado.mesa=laMesa
+        laMesa=Mesa(self.repositorioMesa.findById(numero_mesa))
+        elCandidato=Candidato(self.repositorioCandidato.findById(cedula_candidato))
+        nuevoResultado.numero_mesa=laMesa
         nuevoResultado.candidato=elCandidato
         return self.repositorioResultado.save(nuevoResultado)
     def show(self,id):
@@ -29,13 +29,12 @@ class ControladorResultado():
     Modificación de inscripción (estudiante y materia) (ejemplo)
     Modificación de Resultado (mesa y candidato)
     """
-    def update(self,id,infoResultado,id_mesa,id_candidato):
+    def update(self,id,infoResultado,numero_mesa,cedula_candidato):
         elResultado=Resultado(self.repositorioResultado.findById(id))
-        elResultado.numero_mesa=infoResultado["numero_mesa"]
-        elResultado.cedula_candidato = infoResultado["cedula_candidato"]
-        laMesa = Mesa(self.repositorioMesa.findById(id_mesa))
-        elCandidato = Candidato(self.repositorioCandidato.findById(id_candidato))
-        elResultado.mesa = laMesa
+        elResultado.votos=infoResultado["votos"]
+        laMesa = Mesa(self.repositorioMesa.findById(numero_mesa))
+        elCandidato = Candidato(self.repositorioCandidato.findById(cedula_candidato))
+        elResultado.numero_mesa = laMesa
         elResultado.candidato = elCandidato
         return self.repositorioResultado.save(elResultado)
     def delete(self, id):
@@ -43,6 +42,12 @@ class ControladorResultado():
     "Obtener todos los inscritos en un candidato"
     def listarInscritosEnCandidato(self,id_candidato):
         return self.repositorioResultado.getListadoInscritosEnCandidato(id_candidato)
+    def listarInscritosEnMesa(self,id_mesa):
+        return self.repositorioResultado.getListadoInscritosEnMesa(id_mesa)
+    def votosMasAltosPorMesa(self):
+        return self.repositorioResultado.getMayorVotosCandidato()
 
+    def votosPorCandidatos(self):
+        return self.repositorioResultado.getVotosCandidatos()
     def delete(self, id):
         return self.repositorioResultado.delete(id)

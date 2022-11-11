@@ -253,9 +253,9 @@ def modificarResultado(id_resultado,id_mesa,id_candidato):
 def eliminarResultado(id_resultado):
     json=miControladorResultado.delete(id_resultado)
     return jsonify(json)
-@app.route("/inscripciones/materia/<string:id_materia>",methods=['GET'])
-def inscritosEnCandidato(id_candidato):
-    json=miControladorResultado.listarInscritosEnCandidato(id_candidato)
+@app.route("/inscripciones/votos",methods=['GET'])
+def inscritosEnCandidato():
+    json=miControladorResultado.votosPorCandidatos()
     return jsonify(json)
 ###################################################################################
 
