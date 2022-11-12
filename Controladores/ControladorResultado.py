@@ -44,7 +44,5 @@ class ControladorResultado():
         return self.repositorioResultado.getListadoInscritosEnCandidato(id_candidato)
     def listarInscritosEnMesa(self,id_mesa):
         return self.repositorioResultado.getListadoInscritosEnMesa(id_mesa)
-    def votosMasAltosPorMesa(self):
-        return self.repositorioResultado.getMayorVotosCandidato()
-    def delete(self, id):
-        return self.repositorioResultado.delete(id)
+    def resultadosEnMesas(self):
+        return self.repositorioResultado.getResultadosEnMesas()

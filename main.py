@@ -256,18 +256,21 @@ def modificarResultado(id_resultado,id_mesa,id_candidato):
 def eliminarResultado(id_resultado):
     json=miControladorResultado.delete(id_resultado)
     return jsonify(json)
-@app.route("/resultados/candidato/<string:id_candidato>",methods=['GET'])
+
+#===============================================================================
+#QUERYS
+@app.route("/resultados/candidatos/<string:id_candidato>",methods=['GET'])
 def inscritosEnCandidato(id_candidato):
     json=miControladorResultado.listarInscritosEnCandidato(id_candidato)
     return jsonify(json)
-@app.route("/resultados/mesa/<string:id_mesa>",methods=['GET'])
+@app.route("/resultados/mesas/<string:id_mesa>",methods=['GET'])
 def inscritosEnMesa(id_mesa):
     json=miControladorResultado.listarInscritosEnMesa(id_mesa)
     return jsonify(json)
 
 @app.route("/resultados/mesas",methods=['GET'])
-def getVotosMayores():
-    json=miControladorResultado.votosMasAltosPorMesa()
+def getResultadosMesas():
+    json=miControladorResultado.resultadosEnMesas()
     return jsonify(json)
 
 ###################################################################################
