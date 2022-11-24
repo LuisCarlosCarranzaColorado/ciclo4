@@ -35,3 +35,18 @@ class RepositorioInscripcion(InterfaceRepositorio[Inscripcion]):
         }
         pipeline = [query1,query2]
         return self.queryAggregation(pipeline)
+
+    def sumarNotasEnMaterias(self,id_materia):
+        query1 = {
+          "$match": {"materia.$id": ObjectId(id_materia)}
+        }
+        query2 = {
+          "$group": {
+            "_id": "$materia",
+            "suma": {
+              "$sum": "$nota_final"
+            }
+          }
+        }
+        pipeline = [query1,query2]
+        return self.queryAggregation(pipeline)

@@ -32,7 +32,7 @@ miControladorResultado=ControladorResultado()
 @app.route("/",methods=['GET'])
 def test():
     json = {}
-    json["message"]="Server running ..."
+    json["message"]="Server running ok..."
     return jsonify(json)
 
 ###################################################################################
@@ -136,6 +136,10 @@ def modificarInscripcion(id_inscripcion,id_estudiante,id_materia):
 def eliminarInscripcion(id_inscripcion):
     json=miControladorInscripcion.delete(id_inscripcion)
     return jsonify(json)
+
+#===============================================================================
+#*******************************************************************************
+#QUERYS
 @app.route("/inscripciones/materia/<string:id_materia>",methods=['GET'])
 def inscritosEnMateria(id_materia):
     json=miControladorInscripcion.listarInscritosEnMateria(id_materia)
@@ -148,11 +152,17 @@ def getNotasMayores():
 def getPromedioNotasEnMateria(id_materia):
     json=miControladorInscripcion.promedioNotasEnMateria(id_materia)
     return jsonify(json)
+@app.route("/inscripciones/suma_notas/materia/<string:id_materia>",methods=['GET'])
+def getPromedioNotasMateria(id_materia):
+    json=miControladorInscripcion.sumarNotasMaterias(id_materia)
+    return jsonify(json)
 #===============================================================================
 #*******************************************************************************
 #===============================================================================
 
-#ENDPOINT MESAS
+#ENDPOINT REGISTRADURÍA.
+
+# MESAS
 
 @app.route("/mesas",methods=['GET'])
 def getMesas():

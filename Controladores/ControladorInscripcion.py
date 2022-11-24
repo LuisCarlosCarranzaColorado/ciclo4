@@ -49,6 +49,9 @@ class ControladorInscripcion():
     def promedioNotasEnMateria(self,id_materia):
         return self.repositorioInscripcion.promedioNotasEnMateria(id_materia)
 
+    def sumarNotasMaterias(self,id_materia):
+        return self.repositorioInscripcion.sumarNotasEnMaterias(id_materia)
+
 
 
 
